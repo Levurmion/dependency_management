@@ -191,6 +191,19 @@ if __name__ == "__main__":
 
     Where:
     a, d, and f are default constants.
+
+    The BFS traversal of this approach will always first try to update the variables that
+    are immediately dependent on the updated variable. After that, the variable will be held
+    constant as the algorithm marches on to update everything else downstream.
+
+    Other variables will only be updated if there exists a path from the updated variable
+    directed towards it. The directed edges between variables are inferred from the functions
+    that were passed at instantiation. Their dependencies will create directed edges towards
+    the variable.
+
+    In essence, if you want a variable to be automatically updated in response to another 
+    variable update, you need to define the reverse relationship that it has with respect to its 
+    immediate dependencies. Just rearrange the algebraic equation.
     """
     graph = ComputationalGraph(
         variables=[
